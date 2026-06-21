@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quadrant — Focus Matrix for iPhone</title>
+<meta name="description" content="Quadrant is an Eisenhower urgent-vs-important task matrix with a weekly trend, so you focus on what matters. Free on iPhone, with an optional one-time Pro unlock.">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-soft:#f5f5f7;
+    --card:#ffffff;
+    --text:#1d1d1f;
+    --text-soft:#6e6e73;
+    --line:#d2d2d7;
+    --accent:#007AFF;
+    --accent-soft:rgba(0,122,255,0.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#000000;
+      --bg-soft:#1c1c1e;
+      --card:#1c1c1e;
+      --text:#f5f5f7;
+      --text-soft:#a1a1a6;
+      --line:#3a3a3c;
+      --accent:#0A84FF;
+      --accent-soft:rgba(10,132,255,0.16);
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px}
+  header,section,footer{padding:72px 0}
+  h1,h2,h3{letter-spacing:-0.02em;line-height:1.12;margin:0}
+  h1{font-size:clamp(40px,7vw,64px);font-weight:700}
+  h2{font-size:clamp(28px,4.5vw,38px);font-weight:600;margin-bottom:12px}
+  h3{font-size:20px;font-weight:600;margin-bottom:8px}
+  p{margin:0 0 16px}
+  .muted{color:var(--text-soft)}
+
+  /* Hero */
+  .hero{padding-top:88px;padding-bottom:80px;text-align:center}
+  .mark{display:inline-flex;align-items:center;justify-content:center;margin-bottom:28px}
+  .wordmark{font-size:clamp(40px,7vw,64px);font-weight:700;letter-spacing:-0.03em;margin:0}
+  .subtitle{font-size:20px;color:var(--text-soft);margin:10px 0 6px;font-weight:500}
+  .value{font-size:18px;max-width:620px;margin:18px auto 36px;color:var(--text)}
+  .pill{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--accent);color:#fff;
+    font-size:17px;font-weight:600;
+    padding:14px 26px;border-radius:14px;
+    transition:opacity .15s ease;
+  }
+  .pill:hover{opacity:.9;text-decoration:none}
+  .pill svg{display:block}
+
+  /* Sections */
+  .section-soft{background:var(--bg-soft)}
+  .lead{max-width:640px;margin:0 auto 8px;text-align:center}
+  .center{text-align:center}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 24px;
+  }
+  .icon{
+    width:44px;height:44px;border-radius:12px;
+    background:var(--accent-soft);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+  }
+  .icon svg{display:block}
+
+  /* Comparison */
+  .compare{
+    margin-top:48px;
+    border:1px solid var(--line);
+    border-radius:16px;
+    overflow:hidden;
+    background:var(--card);
+  }
+  table{width:100%;border-collapse:collapse;font-size:16px}
+  th,td{padding:16px 20px;text-align:left;border-bottom:1px solid var(--line)}
+  thead th{font-size:14px;text-transform:uppercase;letter-spacing:.04em;color:var(--text-soft);font-weight:600}
+  tbody tr:last-child td{border-bottom:none}
+  td.col,th.col{text-align:center;width:130px}
+  .price-note{text-align:center;margin-top:18px;font-size:15px}
+  .yes{color:var(--accent);font-weight:600}
+  .dash{color:var(--text-soft)}
+
+  /* Footer */
+  footer{padding:48px 0;border-top:1px solid var(--line);text-align:center}
+  .footlinks{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:center;margin-bottom:18px}
+  .footlinks a{font-size:15px}
+  .copy{font-size:14px;color:var(--text-soft)}
+
+  @media (max-width:720px){
+    .grid{grid-template-columns:1fr;gap:16px}
+    header,section{padding:56px 0}
+    td.col,th.col{width:90px}
+    th,td{padding:14px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="mark">
+      <!-- App-icon-style mark: 2x2 matrix with the "Do Now" quadrant in accent -->
+      <svg width="84" height="84" viewBox="0 0 84 84" role="img" aria-label="Quadrant app icon: a two-by-two matrix with the top-left box highlighted">
+        <rect x="1" y="1" width="82" height="82" rx="19" fill="none" stroke="var(--line)" stroke-width="2"/>
+        <rect x="14" y="14" width="25" height="25" rx="6" fill="var(--accent)"/>
+        <rect x="45" y="14" width="25" height="25" rx="6" fill="none" stroke="var(--text-soft)" stroke-width="2.5"/>
+        <rect x="14" y="45" width="25" height="25" rx="6" fill="none" stroke="var(--text-soft)" stroke-width="2.5"/>
+        <rect x="45" y="45" width="25" height="25" rx="6" fill="none" stroke="var(--text-soft)" stroke-width="2.5"/>
+      </svg>
+    </div>
+    <h1 class="wordmark">Quadrant</h1>
+    <p class="subtitle">Urgent vs important, sorted</p>
+    <p class="value">An Eisenhower matrix that sorts every task by urgency and importance — with a weekly trend so you focus on what actually matters.</p>
+    <a class="pill" href="#" aria-label="Download Quadrant on the App Store">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" fill="#fff">
+        <path d="M16.36 12.78c.02 2.43 2.13 3.24 2.15 3.25-.02.06-.34 1.16-1.12 2.3-.67.99-1.37 1.97-2.47 1.99-1.08.02-1.43-.64-2.66-.64-1.24 0-1.62.62-2.64.66-1.06.04-1.87-1.07-2.55-2.05-1.39-2.01-2.45-5.69-1.02-8.17.71-1.23 1.98-2.01 3.36-2.03 1.04-.02 2.03.7 2.66.7.64 0 1.83-.87 3.09-.74.53.02 2 .21 2.95 1.62-.08.05-1.76 1.03-1.21 3.85zM14.5 5.6c.56-.68.94-1.62.84-2.56-.81.03-1.79.54-2.37 1.21-.52.6-.97 1.56-.85 2.48.9.07 1.82-.46 2.38-1.13z"/>
+      </svg>
+      Download on the App Store
+    </a>
+  </div>
+</header>
+
+<section class="section-soft">
+  <div class="wrap">
+    <h2 class="center">How it works</h2>
+    <p class="lead muted">One idea: every task is either urgent, important, both, or neither. Quadrant makes that visible at a glance.</p>
+    <div class="grid">
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <line x1="12" y1="3" x2="12" y2="21"/>
+            <line x1="3" y1="12" x2="21" y2="12"/>
+          </svg>
+        </div>
+        <h3>Sort into four boxes</h3>
+        <p class="muted">Add a task and drop it into one of four quadrants by two axes — urgent or not, important or not. The most urgent and important work lands in a highlighted Do Now box.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 12h10"/>
+            <path d="M14 7l5 5-5 5"/>
+            <path d="M20 4v16"/>
+          </svg>
+        </div>
+        <h3>Move as priorities shift</h3>
+        <p class="muted">Priorities change through the day. Move any task between quadrants with a tap, complete it when it is done, and keep the matrix matching reality.</p>
+      </article>
+      <article class="card">
+        <div class="icon" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="20" x2="4" y2="11"/>
+            <line x1="10" y1="20" x2="10" y2="4"/>
+            <line x1="16" y1="20" x2="16" y2="13"/>
+            <line x1="22" y1="20" x2="2" y2="20"/>
+          </svg>
+        </div>
+        <h3>See the weekly trend</h3>
+        <p class="muted">A weekly reflection shows how much landed in your win box — important work you got ahead of — versus the trap of urgent busywork that was never important.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="center">Free, with an optional Pro unlock</h2>
+    <p class="lead muted">The full daily matrix is free, forever. Pro adds a few conveniences — it never gates the core.</p>
+    <div class="compare">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">Feature</th>
+            <th scope="col" class="col">Free</th>
+            <th scope="col" class="col">Pro</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>The daily 2x2 matrix and Do Now banner</td><td class="col"><span class="yes">Included</span></td><td class="col"><span class="yes">Included</span></td></tr>
+          <tr><td>Add, move, and complete tasks</td><td class="col"><span class="yes">Included</span></td><td class="col"><span class="yes">Included</span></td></tr>
+          <tr><td>Weekly win-vs-trap trend chart</td><td class="col"><span class="dash">&mdash;</span></td><td class="col"><span class="yes">Included</span></td></tr>
+          <tr><td>Per-quadrant completion analytics</td><td class="col"><span class="dash">&mdash;</span></td><td class="col"><span class="yes">Included</span></td></tr>
+          <tr><td>Recurring tasks that re-add each day</td><td class="col"><span class="dash">&mdash;</span></td><td class="col"><span class="yes">Included</span></td></tr>
+          <tr><td>Extra themes and a shareable reflection</td><td class="col"><span class="dash">&mdash;</span></td><td class="col"><span class="yes">Included</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="price-note muted">Pro is a one-time <strong>$0.99</strong> purchase. No subscription. No account or password required.</p>
+  </div>
+</section>
+
+<section class="section-soft">
+  <div class="wrap center">
+    <h2>Private by design</h2>
+    <p class="lead muted">Your tasks stay on your device. Quadrant has no ads, no trackers, and no third-party SDKs. When you are signed in to iCloud, your matrix can sync privately across your own devices — and nothing is ever sold or shared.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <nav class="footlinks" aria-label="Footer">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="mailto:s0533495227@gmail.com">Support</a>
+    </nav>
+    <p class="copy">Quadrant for iPhone &middot; Made by Shimon Deitel &middot; &copy; 2026</p>
+  </div>
+</footer>
+
+</body>
+</html>
